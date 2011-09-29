@@ -1,0 +1,18 @@
+<% content_tag :table do -%>
+    <tr>
+        <td>Account Name:</td>
+        <td>User:</td>
+        <td>Balance:</td>
+    </tr>
+    <% unless @foreignResults.nil? %>
+        <% @foreignResults.each do |acct| %>
+            <tr>
+                <td><%= acct.name %></td>
+                <td><%= acct.user.name %></td>
+                <td><%= acct.amount %></td>
+            </tr>
+        <% end %>
+    <% end %>
+    
+
+<% end %>

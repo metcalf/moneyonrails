@@ -1,0 +1,27 @@
+<%
+  # User_id to their foriegn linker account_id
+  links = { 3 => 4 }
+  # user_id to other authorized account_id
+  shares = { 3 => { 4 => 7 } }
+  
+  (links.merge(links.invert)).each_pair do |acct_user, user_id|
+%>
+<%= user_id.to_s + "-" + acct_user.to_s %>linker:
+  user_id: <%= user_id %>
+  account_id: <%= (acct_user*10) + user_id  %>
+  permissions: 1
+  isLink: 1
+<%
+  end
+  shares.each_pair do |user_id, accts|
+    accts.each_pair do |acct_user, acct_num|
+%>
+<%= user_id.to_s + "-" + (acct_user*100 + acct_num).to_s %>share:
+  user_id: <%= user_id %>
+  account_id: <%= acct_user*100 + acct_num %>
+  permissions: 1
+  isLink: 0
+<%
+    end
+  end
+%>

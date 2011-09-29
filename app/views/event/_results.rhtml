@@ -1,0 +1,24 @@
+<table id="results" style="clear: both;">
+    <tr>
+        <td>Name:</td>
+        <td>Total:</td>
+        <td>Date:</td>
+        <td>Credits:</td>
+        <td>Debits: </td>
+    <tr>
+    <% @results.each do |result| %>
+       <% @id = "edit" << result.id.to_s
+			color = result.balanced? ? 'black' : 'red' %>
+       <% content_tag :tr, :id => result.id do -%>
+            <td><%= link_to_remote result.name.to_s,
+                       { :url => { :action => 'edit', :id => result.id }, :update => @id, :position => :after },
+                       { :id => @id.to_s } 
+                    %></td>
+            <td><%= result.localAmount %></td>
+            <td><%= result.moment %></td>
+            <td><%= txnAccount(1, result.credits) %></td>
+            <td><%= txnAccount(0, result.debits) %></td>
+    
+       <% end -%>
+    <% end %>
+</table>

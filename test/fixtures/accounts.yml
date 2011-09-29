@@ -1,0 +1,200 @@
+master: 
+  id: 1
+  name: master
+  deleteLock: 1
+  account_type_id: 0
+  user_id: 0
+  parent_id: null
+  parentLock: 1
+<%
+  # create the standard set of account for each user
+  users = {3 => "larry", 
+           4 => "moe",
+           5 => "curly"}
+  links = { 3 => 4 }
+  users.each_pair do |user_id, name| 
+%>
+<%= name %>-root: 
+  id: <%= (user_id * 100) %>
+  name: root
+  deleteLock: 1
+  account_type_id: 6
+  user_id: <%= user_id %>
+  parent_id: 1
+  parentLock: 1
+  
+<%= name %>-assets: 
+  name: Assets
+  deleteLock: 1
+  id: <%= (user_id * 100) + 1 %>  
+  account_type_id: 1
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) %>
+  parentLock: 1
+  
+<%= name %>-cash:
+  name: cash
+  deleteLock: 0
+  id: <%= (user_id * 100) + 2 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) + 1 %>
+  parentLock: 0
+
+<%= name %>-banks:
+  name: banks
+  deleteLock: 0
+  id: <%= (user_id * 100) + 3 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) + 1 %>
+  parentLock: 0
+  
+<%= name %>-checking:
+  name: checking
+  deleteLock: 0
+  id: <%= (user_id * 100) +  4 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  3 %>
+  parentLock: 0
+  
+<%= name %>-savings:
+  name: savings
+  deleteLock: 0
+  id: <%= (user_id * 100) +  5 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  3 %>
+  parentLock: 0
+
+<%= name %>-liabilties: 
+  name: Liabilties
+  deleteLock: 1
+  id: <%= (user_id * 100) +  6  %>
+  account_type_id: 2
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) %>
+  parentLock: 1
+  
+<%= name %>-poker:
+  name: poker
+  deleteLock: 0
+  id: <%= (user_id * 100) +  7 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  6 %>
+  parentLock: 0
+  
+<%= name %>-credit_cards:
+  name: credit cards
+  deleteLock: 0
+  id: <%= (user_id * 100) +  8 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  6 %>
+  parentLock: 0
+
+<%= name %>-visa:
+  name: visa
+  deleteLock: 0
+  id: <%= (user_id * 100) +  9 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  8 %>
+  parentLock: 0
+
+<%= name %>-mastercard:
+  name: mastercard
+  deleteLock: 0
+  id: <%= (user_id * 100) +  10 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  8 %>
+  parentLock: 0
+  
+<%= name %>-equity: 
+  name: Shareholder's Equity
+  deleteLock: 1
+  id: <%= (user_id * 100) +  11 %>
+  account_type_id: 3
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) %>
+  parentLock: 1
+
+<%= name %>-pic:
+  name: Paid-In Capital
+  deleteLock: 0
+  id: <%= (user_id * 100) +  12 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  11 %>
+  parentLock: 0
+
+<%= name %>-expenses:
+  name: Expenses
+  deleteLock: 0
+  id: <%= (user_id * 100) +  13 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  11 %>
+  parentLock: 0
+  
+<%= name %>-strippers:
+  name: Strippers
+  deleteLock: 0
+  id: <%= (user_id * 100) +  14 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  13 %>
+  parentLock: 0
+  
+<%= name %>-beer:
+  name: Beer
+  deleteLock: 0
+  id: <%= (user_id * 100) +  15 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  13 %>
+  parentLock: 0
+  
+<%= name %>-earnings:
+  name: Earnings
+  deleteLock: 0
+  id: <%= (user_id * 100) +  16 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  11 %>
+  parentLock: 0
+  
+<%= name %>-dealing:
+  name: Dealing
+  deleteLock: 0
+  id: <%= (user_id * 100) +  17 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  16 %>
+  parentLock: 0
+  
+<%= name %>-stealing:
+  name: Stealing
+  deleteLock: 0
+  id: <%= (user_id * 100) +  18 %>
+  account_type_id: 5
+  user_id: <%= user_id %>
+  parent_id: <%= (user_id * 100) +  16 %>
+  parentLock: 0
+<% end
+   (links.merge(links.invert)).each_pair do |first, second|
+%>
+<%= first.to_s + "-to-" + second.to_s %>:
+  name: <%= users[second] %>
+  deleteLock: 1
+  id: <%= (first*10) + second  %>
+  account_type_id: 4
+  user_id: <%= first %>
+  parent_id: <%= (first * 100) +  1 %>
+  parentLock: 0
+<% end %> 
+ 
+

@@ -1,0 +1,60 @@
+/* Unique layout elements for moneyonrails
+ *
+ *
+ */
+
+#wrapper{
+	width: 920px;
+}
+
+div.auto_complete {
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected { 
+  background-color: #ffb; 
+}
+div.auto_complete ul strong.highlight { 
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+.window {
+    position: absolute;
+    display: inline;
+    background-color: #fff;
+	color: #000;
+    border-style: solid;
+    border-color: #000;
+    border-width: thin;
+    z-index:2;
+	padding: 0.5em
+}
+
+.window a, a:hover, a:focus{
+	color: #bb0000;
+}
+
+#mainbox{
+	width: 45em;
+	padding-left: 0.5em;
+}
+
+#warning{
+	color: #FF0000;
+}
+
+#notice{
+	color: #00FF00;
+}

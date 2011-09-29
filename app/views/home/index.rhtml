@@ -1,0 +1,10 @@
+
+<% content_for :sidemenu do %>
+  <li>
+  	<%= content_tag 'a', 'Add Alert',
+	               :onclick => visual_effect(:toggle_slide, "addAlerterWindow", :duration => 0.5) %>
+	<div class="window" id="addAlerterWindow" style="display: none;">not working</div>
+  </li>
+<% end %>
+
+<%= render :partial => "alerts" %>

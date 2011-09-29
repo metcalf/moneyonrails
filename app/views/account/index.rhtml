@@ -1,0 +1,125 @@
+<% content_for :sidemenu do %>
+  <li>
+    <%= link_to_remote 'Add Account',
+                       { :url => { :action => 'edit' }, :update => 'addLink', :position => :after, :before => 'closeEdit()' },
+                       { :id => 'addLink' } 
+	%>
+  </li><li>
+	<%= link_to_remote 'Add Group',
+                       { :url => { :action => 'editGroup' }, :update => 'addGroupLink', :position => :after, :before => 'closeEdit()' },
+                       { :id => 'addGroupLink' } 
+	%>
+  </li>
+<% end %>
+
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag "live_tree" %>
+
+<h3>My Accounts</h3>
+<%= render :partial => "results" %>
+
+<%= render :partial => "groups" %>
+
+<script type="text/javascript">
+    function closeEdit(){
+        var item = document.getElementById('editWindowCancel');
+        if(item != null){
+            item.onclick();
+        }
+        return true;
+    }
+
+</script>
+
+<script type="text/javascript">
+    var acct_index = -1;
+	var index = -1;
+	
+    function addGroupAccount(value, id){
+        acct_index = acct_index + 1;
+        document.getElementById('account_name').value = "";
+        for(var i = 0; i < acct_index; i++){        
+		    if(document.getElementById(("account[id][" + i + "]")).value == id)
+                return null;    
+        }
+        
+        var container = document.getElementById("GroupAccounts").appendChild(document.createElement('div'));
+        container.class = "clear";
+        container.id = value;        
+		
+        var item = document.createElement("span");
+        item.innerHTML = value;
+        container.appendChild(item);
+		
+		var acct = document.createElement("input");
+		acct.name = acct.id = "account[id]["  + acct_index +  "]";
+		acct.type = "hidden";
+		acct.value = id;
+		container.appendChild(acct);
+        
+        var dele = document.createElement('img');
+        dele.src = 'images/dele.gif';
+        dele.name = value;
+        container.appendChild(dele);
+        
+        dele.onclick = function() {
+            removeGroupAccount(this.name);
+        }        
+        
+    }
+    
+    function removeGroupAccount(value){
+        var item = document.getElementById(value);
+        item.parentNode.removeChild(item);
+              
+        acct_index = acct_index - 1;
+    }
+	
+	function addUser(value){
+        document.getElementById('user_username').value = "";
+        index = index + 1;
+        
+        for(var i = 0; i < index; i++){
+            if(document.getElementById('users[' + i + ']').value == value)
+                return;    
+        }
+        
+        var container = document.getElementById("users").appendChild(document.createElement('div'));
+        container.class = "clear";
+        container.id = value;        
+        
+        var item = document.createElement("span");
+        item.innerHTML = value;
+        container.appendChild(item);
+        
+        var field = document.createElement("input");
+        field.type = 'hidden';
+        field.value = value;
+        field.name = "users[" + index + "]";
+        container.appendChild(field);
+        
+        var dele = document.createElement('img');
+        dele.src = 'images/dele.gif';
+        dele.name = value;
+        container.appendChild(dele);
+        
+        dele.onclick = function() {
+            removeUser(this.name);
+        }        
+        
+    }
+    
+    function removeUser(value){
+        var item = document.getElementById(value);
+        item.parentNode.removeChild(item);
+              
+        index = index - 1;
+    }
+    
+    function setParent(element, value){
+        document.getElementById('account_parent_id').value = value.id
+    }
+	
+	
+</script>
+

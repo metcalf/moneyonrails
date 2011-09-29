@@ -1,0 +1,11 @@
+<% form_for :action => "addAlert" %>
+Alert me when...
+<br />
+<input type="radio" name="type" value="changed"> ...someone makes a change that affects my accounts.
+<br />
+<input type="radio" name="type" value="inequality"> ... the balance of <%= text_field_with_auto_complete :account, :name, :size => 30, :skip_style => true %> is
+												<select name="mode"><option value="<">less</option><option value=">">greater</option></select> than $<%= text_field :account, :amount, :size => 5 %>
+<br />
+<%= submit_tag "Add Alert" %>   		
+
+<% end %>

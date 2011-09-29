@@ -1,0 +1,23 @@
+<% setupVars %>
+<% form_tag :action => 'update' do -%>
+    
+    <div class='clear'>
+        Login: <%= @login %>
+    </div>
+    <div class='clear'>
+        Name: <%= text_field 'user', 'name', :value => @name %>
+    </div>
+    <div class='clear'>
+        Email: <%= text_field 'user', 'email', :value => @email %>
+    </div>
+    <div class='clear'>
+        New Password: <%= password_field 'user', 'password' %>
+    </div>
+    <div class='clear'>
+        Confirm New Password: <%= password_field 'user', 'password_confirmation' %>
+    </div>
+    <%= hidden_field 'find', 'id', :value => @id %>
+    <div class="clear">
+        <%= submit_tag 'Submit Transaction' %>
+    </div>
+<% end %>

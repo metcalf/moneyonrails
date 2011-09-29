@@ -1,0 +1,16 @@
+<% form_tag :action => 'index'  do %>
+	<div class="clear">
+		Name like <%= text_field :filter, :name %>
+	</div>
+	<!--<div class="clear">
+		Date between <%= date_select :filter, :min, :include_blank => true  %>  and  <%= date_select :filter, :date_max, :include_blank => true %>
+	</div>-->
+	<div class="clear">
+		Amount between <%= text_field :filter, :amount_min %> and <%= text_field :filter, :amount_max %>
+	</div>
+	<br />
+	<div class="clear">
+	    <%= submit_tag 'Filter' %>
+	</div>
+<% end %>
+  

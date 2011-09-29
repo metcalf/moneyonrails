@@ -1,0 +1,25 @@
+<ul class="accounts">
+  <% @results.each do |result| %>
+  	<% if result.instance_of?(Account)%>
+	    <% if result.children.size == 0 %>
+	        <%  text = result.name
+	            if result.user_id != current_user.id
+	                text << (" (" + result.user.name + ")")
+	            end %>
+	        <%= content_tag :li, text, :class => 'account', :id => result.id.to_s %>
+	    <% end %>
+	<% elsif result.instance_of?(Group) %>
+		<li id="group">
+			<%= result.name %>(Acct. Group)
+			<% result.accounts.each do |acct| %>
+				<%  text = acct.name
+	            if acct.user_id != current_user.id
+	                text << (" (" + acct.user.name + ")")
+	            end %>
+				<%= content_tag :a, text, :id => acct.id.to_s, :style => "display: none;" %>
+			<% end %>
+		</li>
+		
+	<% end %>
+  <% end %>
+</ul>

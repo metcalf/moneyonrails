@@ -1,0 +1,45 @@
+<% if(@editGroup)
+    @name = @editGroup.name
+	@Eid = @editGroup.id
+    @id = 'editGroup'
+   else
+    @id = 'addGroup'
+   end
+%>
+<div class="window" style="padding: 0.5em" id="<%= @id %>" >  
+  <% form_tag :action => "setGroup" do %>
+	<div class="float">
+      <label for="name" >Name:</label><br />
+      <%= text_field 'group', 'name', :value => @name %>
+    </div>
+	<div class="float" id="GroupAccounts">
+            <label for="parent">Accounts:</label><br />
+            <%= text_field_with_auto_complete 'account', 'name', { },
+                { :skip_style => true, :after_update_element => "function(element, value){ addGroupAccount(value.innerHTML, value.id); }" } %>
+    </div>
+	<% if @editGroup %>
+		<%= hidden_field 'group', 'id', :value => @Eid %>	
+	<% end %>
+	<div class="clear">
+            <%= submit_tag 'Submit Group' %>
+            &nbsp; 
+			<%= content_tag :a, 'Cancel', :id => 'editWindowCancel', :onclick => "item = document.getElementById('#{@id}'); item.parentNode.removeChild(item);"%>
+            <% if @editGroup %>
+                
+                <%= link_to 'Delete',
+                    { :action => 'deleteGroup', :id => @editGroup.id }, 
+                    :confirm => "Are you sure you want to delete #{@editGroup.name}?" 
+                 %>
+            <% end %>
+    </div>
+  <% end %>	
+</div>
+
+	<script type="text/javascript"> 
+		acct_index = -1;  
+		<%  if @editGroup %> 
+		     <% @editGroup.accounts.each do |account| %>
+		        <%= "addGroupAccount('#{account.name}(#{account.user.name})', #{account.id});" %>  
+		    <% end %>
+		<% end %>
+	</script>

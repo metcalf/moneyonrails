@@ -1,0 +1,168 @@
+/* CSS Document */
+
+.clear
+{
+	clear: both;
+	padding-bottom: 1px;	/* for Gecko-based browsers */
+	margin-bottom: -1px;	/* for Gecko-based browsers */
+}
+.hide
+{
+	display: none !important;
+}
+.float {
+	float:left;
+	padding: 0.5em 0.5em
+}
+/* alter some HTML elements' default style
+ */
+ul, ol, dl, p, h1, h2, h3, h4, h5, h6
+{
+	margin-top: 14px;
+	margin-bottom: 14px;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+h1
+{
+	font-size: 220%;
+}
+h2
+{
+	font-size: 190%;
+}
+h3
+{
+	font-size: 160%;
+}
+h4
+{
+	font-size: 130%;
+}
+h5
+{
+	font-size: 100%;
+}
+h6
+{
+	font-size: 70%;
+}
+a, a:link, a:visited, a:active
+{
+	text-decoration: none;
+	color: #0000FF;
+	cursor:hand;
+}
+a:hover
+{
+	color: #66CC33;
+	text-decoration: none;
+	cursor:hand;
+}
+body 
+{
+	font-size: 100.1%;	/* resolve some font size issues in some layouts for
+				   some browsers. (in other words, i got no clue.) */
+	letter-spacing: 0px;
+}
+html, body
+{
+	color: #000000;
+	font-family: Verdana, Geneva, sans-serif;
+}
+td {
+    padding-right: 1em;
+}
+#pageWrapper
+{
+	font-size: 80%;	/* set your default font size here. */
+}
+#masthead
+{
+	padding-bottom: 15px;
+	padding: 1em 0;
+	height:55px;
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	
+}
+#hnav
+{
+	text-align: center;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+#hnav ul li a
+{
+	padding-bottom: 5px;
+}
+#hnav ul, #hnav ul li
+{
+	display: inline;
+	list-style-type: none;
+	margin: 0;
+	padding: 10pt;
+}
+#hnav ul li a
+{
+	margin: 0 0 0 0;
+	padding-left: 15px;
+	padding-right: 15px;	/* short-hand padding attribute would overwrite
+				   top/bottom padding set in a previous rule */
+	white-space: nowrap;
+}
+#hnav ul li a:link, #hnav ul li a:visited
+{
+	color:#000000;
+	font-family: Verdana, Geneva, sans-serif;
+}
+#hnav ul li a:hover
+{
+	color: #66CC33;
+	font-weight: bold;	
+}
+#hnav, #hnav ul, #hnav li, #hnav a{
+	vertical-align:middle;
+}
+* html #hnav ul li, * html #hnav ul li a
+{
+	width: 1%; /* IE/Mac needs this */
+	display: inline-block;	/* IE/Mac needs this */
+	/* \*/
+		width: auto;
+		display: inline;
+	/* reset above hack */
+}
+
+div.auto_complete {
+  background: #fff;
+}
+div.auto_complete ul {
+  border:1px solid #888;
+  margin:0;
+  padding:0;
+  width:100%;
+  list-style-type:none;
+}
+div.auto_complete ul li {
+  margin:0;
+  padding:3px;
+}
+div.auto_complete ul li.selected { 
+  background-color: #ffb; 
+}
+div.auto_complete ul strong.highlight { 
+  color: #800; 
+  margin:0;
+  padding:0;
+}
+
+.window {
+    position: absolute;
+    display: inline;
+    background-color: #FFF;
+    border-style: solid;
+    border-color: #000;
+    border-width: thin;
+    z-index:2;
+}

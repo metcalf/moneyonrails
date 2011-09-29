@@ -1,0 +1,11 @@
+<ul class="accounts">
+  <% @results.each do |result| %>
+    <% if result.children.size == 0 %>
+        <%  text = result.name
+            if result.user != current_user
+                text << (" (" + result.user.name + ")")
+            end %>
+        <%= content_tag :li, text, :class => 'account', :id => result.id.to_s %>
+    <% end %>
+  <% end %>
+</ul>

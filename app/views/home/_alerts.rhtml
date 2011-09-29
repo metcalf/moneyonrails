@@ -1,0 +1,9 @@
+<% if @alerts %>
+  <h3>Alerts</h3>
+  Alert me when...
+  <ul>
+  	<% @alerts.each do |alert| %>
+	<li><%= alert.subject %></li>
+	<% end %>
+  </ul>
+<% end %>

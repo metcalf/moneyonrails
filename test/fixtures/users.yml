@@ -1,0 +1,69 @@
+quentin:
+  id: 1
+  login: quentin
+  email: quentin@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  #crypted_password: "ce2/iFrNtQ8=\n" # quentin, use only if you're using 2-way encryption
+  created_at: <%%= 5.days.ago.to_s :db %>
+  activated_at: <%%= 5.days.ago.to_s :db %> # only if you're activating new signups
+aaron:
+  id: 2
+  login: aaron
+  email: aaron@example.com
+  salt: 7e3041ebc2fc05a40c60028e2c4901a81035d3cd
+  crypted_password: 00742970dc9e6319f8019fd54864d3ea740f04b1 # test
+  activation_code: aaronscode # only if you're activating new signups
+  created_at: <%%= 1.days.ago.to_s :db %>
+ 
+larry:
+  id: 3
+  name: Larry Stooge
+  email: larry@test.com
+  login: larry
+  crypted_password: 14d3b42ef83452a219d8308614689c1e67aae140
+  created_at: 2007-09-25 13:32:18
+  updated_at: 2007-09-25 13:32:18
+  activated_at: 2007-09-25 14:42:14
+  activation_code: b512539b761cafbc79ea1d4747870292388b6afa
+  salt: b5b8f27a918979e3394360987ef3a1384f33409d
+  level: 1
+  
+moe:
+  id: 4
+  name: Moe Stooge
+  email: moe@test.com
+  login: moe
+  crypted_password: a075a99bc5ad8f6e9598ff669cd78d1dc2dec816
+  created_at: 2007-09-25 14:32:18
+  updated_at: 2007-09-25 14:32:18
+  activated_at: 2007-09-25 15:42:14
+  activation_code: bc66cba52949aa38ef8ed80b0d2bc558835c2dd1
+  salt: 1039a352cd7e572634c05f0f987b5dcc98369134
+  level: 1
+
+curly:
+  id: 5
+  name: Curly Stooge
+  email: curly@test.com
+  login: curly
+  crypted_password: 250a26aef34078c88a1d5d299ff4f5465e42e918
+  created_at: 2007-09-25 15:32:18
+  updated_at: 2007-09-25 15:32:18
+  activated_at: 2007-09-25 16:42:14
+  activation_code: 2110d8190c92ff20c45fa410691c7f495f657f2e
+  salt: f699ed7d04b6f698b7fcd8d3d8a34d9c66574b52
+  level: 1
+  
+admin:
+  id: 6
+  name: Admin User
+  email: admin@test.com
+  login: admin
+  crypted_password: 250a26aef34078c88a1d5d299ff4f5465e42e918
+  created_at: 2007-09-25 15:32:18
+  updated_at: 2007-09-25 15:32:18
+  activated_at: 2007-09-25 16:42:14
+  activation_code: 2110d8190c92ff20c45fa410691c7f495f657f2e
+  salt: f699ed7d04b6f698b7fcd8d3d8a34d9c66574b52
+  level: 1

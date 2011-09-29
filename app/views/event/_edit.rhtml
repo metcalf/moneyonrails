@@ -1,0 +1,46 @@
+<% setupVars %>
+<% content_tag :div, :class => 'window', :id => @wid do -%>
+    <% form_tag :action => @action  do %>
+    
+        <div class="float">
+            <label for="name">Name:</label><br />
+            <%= text_field 'event', 'name', :value => @name %>
+        </div>
+        
+        <% if @edit %>
+        <%= hidden_field 'event', 'id', :value => @edit.id %>
+        <% end %>
+        
+        <div class="float">
+            <label for="moment">Transaction Date:</label><br />
+            <%= date_select 'event', 'moment' %>
+        </div>
+        
+        <div class="clear">
+            Estimate?<%= check_box 'event', 'isEstimate', :checked => (@isEstimate ? 'checked' : nil ) %>
+        </div>
+        
+        
+        <% @type = "credit"
+           @data = @credits %>
+        <%= render :partial => 'account_table' %>
+        
+        <% @type = "debit"
+           @data = @debits %>
+        <%= render :partial => 'account_table' %>
+        
+        <br />
+        <div class="clear">
+            <%= submit_tag 'Submit Transaction' %>
+        </div>
+        
+    <% end %>
+
+    <%= content_tag :a, 'Cancel', :id => @wid + 'Cancel', :onclick => "item = document.getElementById('#{@wid}'); item.parentNode.removeChild(item); document.getElementById('#{@link}').style.display = 'inline';"%>
+  <% if @edit %>    
+    <%= link_to_remote 'Delete',
+            { :url => { :action => 'delete', :id => @edit.id.to_s }, :confirm => "Are you sure you want to delete #{@edit.name}?",
+            :loading => "item = document.getElementById('#{@wid}'); item.parentNode.parentNode.parentNode.removeChild(item.parentNode.parentNode);" }
+  %>
+  <% end %>
+<% end %>

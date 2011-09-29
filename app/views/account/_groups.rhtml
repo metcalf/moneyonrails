@@ -1,0 +1,10 @@
+<h3>Groups</h3>
+<div id="groups" class="clear">
+	
+	<%= live_tree(:group_tree, {
+            :initial_data_root => Group.getRoot,
+            :initial_data_whole_tree => true,
+            :hide_root_item => true,
+        }) %>
+	
+</div>

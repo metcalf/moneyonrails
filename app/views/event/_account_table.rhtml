@@ -1,0 +1,31 @@
+<% content_tag :table, :id => @type + 'Table', :class => 'clear' do -%>
+    <tr>
+        <td><%= @type.capitalize %> Accounts:</td>
+        <td></td>  
+    </tr>
+    <tr>
+        <td>
+        <%= text_field_with_auto_complete ("#{@type}", "name", 
+                { :size => 40 }, 
+                { :url => { :action => "auto_complete_for_account_name" } , :param_name => 'account[name]', :after_update_element => "function(element, value){ add#{@type}(element, value); }" } ) %>
+        </td>
+        <td>Amount:</td>
+    </tr>
+   
+        <% if @edit 
+            @data.each do |evtAcct| 
+                if !evtAcct.account.link?
+                    @evtAcct = evtAcct 
+        %>
+                <%= render :partial => 'account_form' %>
+                <%  session[:numActs] = session[:numActs] + 1
+                end
+            end
+          end %>   
+    
+<% end %>
+
+<script type='text/javascript'>
+    index = <%= session[:numActs] %>;
+</script>
+

@@ -1,0 +1,5 @@
+0.1.1
+
+- Packaged code as a plugin.
+- Added +get_item_children_proc+ option.
+- Added +get_item_parent_proc+ option.

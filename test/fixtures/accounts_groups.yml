@@ -1,0 +1,15 @@
+<% 
+  # map group id's to account id's
+  groups = { 1 => [304, 306, 307] }
+  groups.each_pair do |group_id, accts|
+    accts.each do |acct_id|
+%>
+Group<%= group_id %>-<%= acct_id %>:
+  account_id: <%= acct_id %>
+  group_id: <%= group_id %>
+<%
+    end
+  end
+%>
+  
+  

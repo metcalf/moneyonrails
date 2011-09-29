@@ -1,0 +1,15 @@
+<%
+  # map user id's to group id/name pairs
+  users_groups = { 3 => {1 =>"My Group"} }
+  users_groups.each_pair do |user_id, groups|
+    groups.each_pair do |id, name|
+%>
+<%= name %>-<%= user_id %>:
+  id: <%= id %>
+  user_id: <%= user_id %>
+  name: <%= name %>  
+<%
+    end
+  end
+%>
+ 

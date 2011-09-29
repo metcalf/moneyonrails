@@ -1,0 +1,132 @@
+<%= javascript_include_tag :defaults %>
+
+<% content_for :sidemenu do %>
+  <li>
+    <%= link_to_remote 'Add Transaction',
+                       { :url => { :action => 'edit' }, :update => 'addLink', :position => :after, :before => 'closeEdit()' },
+                       { :id => 'addLink' } 
+	%>
+  </li><li>
+	<%= content_tag 'a', 'Filter Transactions',
+	               :onclick => visual_effect(:toggle_slide, "filterWindow", :duration => 0.5) %>
+	<div class="window" id="filterWindow" style="display: none;"><%= render :partial => 'filter' %></div>
+  </li><li>	
+	<%= link_to 'Clear Filter', :action => 'clear' %>
+  </li>
+<% end %>
+             
+<h4>Estimated Transactions:</h4>   
+    <% @results = session[:estimate_results] 
+       if @results != nil %>
+    <div style="float: right;">
+		<%= will_paginate @results, :param_name => :estimate_page %>
+	</div>
+    <%=     render :partial => 'results' %>
+    <% end %>
+
+<hr class="clear" />
+<h4 style="float: left;">Transactions:</h4>   
+    <% @results = session[:event_results] 
+       if @results != nil %>
+	   <div style="float: right;">
+	   	<%= will_paginate @results, :param_name => :event_page %>
+	   </div>
+    <%=     render :partial => 'results' %>
+    <% end %>
+    
+    
+
+<script type="text/javascript">
+    var index = 0;
+    var deleteIndex = 0;
+    
+    function addcredit(element, value) {
+        add(element, value, 'creditTable', 1);
+    }
+    
+    function adddebit(element, value) {
+		add(element, value, 'debitTable', 0);
+    }
+	
+	function add(element, value, container, isCredit){
+		element.value = "";
+		var items = value.getElementsByTagName('a');
+		if(items != null && items.length == 0){
+			document.getElementById(container).appendChild(addAccount(value, isCredit));
+			index = index + 1;
+		} else {
+			for(var i = 0; i < items.length; i++){
+				document.getElementById(container).appendChild(addAccount(items.item(i), isCredit));
+				index = index + 1;	
+			}
+		}
+	}
+    
+    function addAccount(value, isCredit) {
+        row = document.createElement('tr');
+        col = document.createElement('td');
+        item = document.createElement('img');
+        item.src = 'images/dele.gif';
+        item.onclick = function() {
+            removeAccount(row);
+        }    
+        col.appendChild(item);
+        
+        item = document.createElement('span');
+        item.innerHTML = value.innerHTML;
+        item.style.color = "green";
+        col.appendChild(item);
+        
+        item = document.createElement('input');
+        item.type = "hidden";
+        item.value = value.id;
+        item.name = "account[" + index + "][account_id]";
+        item.id = "account_" + index + "_account_id";
+        col.appendChild(item);
+        
+        item = document.createElement('input');
+        item.type = "hidden";
+        item.value = isCredit;
+        item.name = "account[" + index + "][is_credit]";
+        item.id = "account_" + index + "_is_credit";
+        col.appendChild(item);
+        
+        item = document.createElement('input');
+        item.type = "hidden";
+        item.value = "";
+        item.name = "account[" + index + "][id]";
+        item.id = "account_" + index + "_id";
+        col.appendChild(item);
+        row.appendChild(col);
+        
+        col = document.createElement('td');
+        item = document.createElement('input');
+        item.type = "text";
+        item.name = "account[" + index + "][amt]";
+        item.id = "account_" + index + "_amt";
+        col.appendChild(item);
+        row.appendChild(col);
+        
+        return row;
+    }
+    
+    function closeEdit(){
+        item = document.getElementById('editWindowCancel');
+        if(item != null){
+            item.onclick();
+        }
+        return true;
+    }
+    
+    function removeAccount(row){
+        item = document.createElement('input');
+        item.type = 'hidden'
+        item.name = "delete[" + deleteIndex + "]";
+        item.value = row.id.substring(0, row.id.indexOf('row'));
+        deleteIndex = deleteIndex + 1;
+        
+        row.parentNode.appendChild(item);
+        row.parentNode.removeChild(row);
+    }
+
+</script>

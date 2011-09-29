@@ -1,0 +1,64 @@
+.live_tree {
+	border: 1px solid black;
+	padding: 5px;
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+}
+
+.live_tree_branch, .live_tree_root {
+	list-style-type: none;
+	margin-left: 0;
+	padding-left: 0.5em;	
+}
+.column {
+    
+}
+.live_tree_root {
+	padding: 0;
+	margin: 0;
+	white-space: nowrap;
+}
+
+.live_tree_loading_tree {
+	color: black;
+}
+
+.live_tree_searching {
+	margin-bottom: 10px;
+}
+
+.live_tree_item {
+}
+
+a.live_tree_branch_expand_link {
+}
+
+a.live_tree_branch_collapse_link {
+}
+
+.live_tree_item_icon {
+	color: #048;
+	border-style: none;
+	margin-right: 0.5ex;
+}
+
+.live_tree_check_box {
+}
+
+.live_tree_loading_icon {
+	margin-right: 0.5ex;
+}
+
+a.live_tree_item_link {
+	color: black;
+}
+
+.live_tree_item_name {
+	color: black;
+}
+
+.live_tree_active_item_name {
+	background-color: #048;
+	color: white;
+}

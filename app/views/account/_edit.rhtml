@@ -1,0 +1,57 @@
+
+<% if(@edit)
+    @name = @edit.name
+    @parent = @edit.parent.name
+    parent_id = @edit.parent.id
+    @action = 'update'
+    @Eid = @edit.id.to_s
+    @id = 'edit'
+    @link = 'edit' << @edit.id.to_s
+   else
+    @action = 'create'
+    @id = 'addAcct'
+   end
+%>
+  <div class="window" style="padding: 0.5em" id="<%= @id %>" >  
+    <% form_tag :action => @action, :id => @Eid  do %>
+        <div class="float">
+            <label for="name" >Name:</label><br />
+            <%= text_field 'account', 'name', :value => @name %>
+        </div>
+        <div class="float">
+            <label for="parent" >Parent Account:</label><br />
+            <%= collection_select("account", "parent_id" , @parents, "id", "name") %>
+		</div>
+        <%= hidden_field 'account', 'parent_id', :value => parent_id %>
+        <div class="float" id="users">
+            <label for="parent">Authorized Users:</label><br />
+            <%= text_field_with_auto_complete 'user', 'username', { },
+                { :skip_style => true, :after_update_element => "function(element, value){addUser(value.innerHTML);}" } %>
+        </div>
+        <div class="clear">
+            <%= submit_tag 'Submit Account' %>
+            &nbsp; 
+			<%= content_tag :a, 'Cancel', :id => 'editWindowCancel', :onclick => "item = document.getElementById('#{@id}'); item.parentNode.removeChild(item); document.getElementById('#{@link}').style.display = 'inline';"%>
+            <% if @edit %>
+                
+                <%= link_to 'Delete',
+                    { :action => 'delete', :id => @edit.id }, 
+                    :confirm => "Are you sure you want to delete #{@edit.name}?" 
+                 %>
+            <% end %>
+        </div>
+    <% end %>
+  </div>
+
+<script type="text/javascript">
+    index = -1;  
+    <%  if @edit %>
+         
+     <% @edit.users.each do |user| %>
+        <%= 'addUser("' + user.name + '");' %>
+        
+    <%
+        end
+       end
+    %>
+</script>

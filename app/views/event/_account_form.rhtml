@@ -1,0 +1,20 @@
+<%
+    name = @evtAcct.name + (@evtAcct.account.user != current_user ? (" (" + @evtAcct.account.user.name + ")") : "")
+    amt = @evtAcct.amount
+    id = @evtAcct.id
+    acctId = @evtAcct.account.id
+%>
+<% content_tag :tr, :id => id.to_s + 'row' do -%>
+    <td>
+    <%= content_tag :img, '', :src => 'images/dele.gif', :onclick => "removeAccount(document.getElementById('#{id}row'));" %>
+	<%= name %>
+    <%= hidden_field 'account', 'name', :value => name, :index => session[:numActs]  %>
+    <%= hidden_field 'account', 'is_credit', :value => (@type == 'credit' ? 1 : 0), :index => session[:numActs]  %>
+    <%= hidden_field 'account', 'id', :value => id, :index => session[:numActs] %>  
+    <%= hidden_field 'account', 'account_id', :value => acctId, :index => session[:numActs] %>  
+    </td>
+    
+    <td>
+        <%= text_field 'account', 'amt', {:index => session[:numActs], :size => 20, :value => amt } %>
+    </td>   
+<% end %>

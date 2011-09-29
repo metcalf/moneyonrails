@@ -1,0 +1,97 @@
+.entrytitle h2{
+	font-size:2.2em;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+.entrytitle h2 a
+{
+	color: #6698cb;
+}
+.entrytitle h2 a:hover{
+	color:#CC0000;
+}
+.entrytitle h5 {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  padding-left: 0.25em;
+}
+/*************************************
+ +Entry
+ *************************************/
+.entry{
+	margin-bottom: 2em;
+}
+
+.entrymeta{
+	font-size:0.9em;
+	margin-top: 1.5em;
+}
+
+.entrybody{
+	color: #000;
+}
+
+.postedby{
+	background:#fff url(../images/user.gif) no-repeat;
+	padding:3px;
+	padding-left:20px;
+}
+.filedto{
+	background:#fff url(../images/post.gif) no-repeat;
+	padding:3px;
+	padding-left:20px;
+}
+.commentslink{
+	background:#fff url(../images/packaged.gif) no-repeat;
+	padding:3px;
+	padding-left:20px;
+}
+
+/*************************************
+ +Comments
+ *************************************/
+.commentsblock{
+	margin:0.5em;
+	padding:1em;
+
+}
+.commentsblock textarea{
+	width:35em;
+}
+.commentsblock input, .commentsblock textarea{
+	border:1px solid #d1d1d1;
+}
+.commentsblock textarea:focus{
+	background:#eee;
+	border:1px solid #a1a1a1;
+}
+.commentsblock textarea:focus, .commentsblock input:focus{
+	background:#eee;
+	border:1px solid #a1a1a1;
+}
+.commentauthor{
+	display:block;
+	font-size:1.5em;
+}
+ol.commentlist{
+	color:#777;
+	font-size:0.9em;
+	list-style-type:none;
+	margin:0;
+	margin-top:1.5em;
+	padding:0;
+}
+.commentlist li{
+	margin-bottom:0.5em;
+	padding:0.5em 1em;
+}
+.alt{
+	background:#f3f5e9;
+	border:1px dotted #d1d1d1;
+	padding:0.5em;
+}
+h3#comments{
+font-size:1.6em;
+}

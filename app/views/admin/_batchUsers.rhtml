@@ -1,0 +1,132 @@
+<table id='batchUsersTable'>
+    <tr>
+        <td>Name</td>
+        <td>Username</td>
+        <td>Email</td>
+        <td>Password</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><%= text_field 'user', 'name' %></td>
+        <td><%= text_field 'user', 'username' %></td>
+        <td><%= text_field 'user', 'email' %></td>
+        <td><%= text_field 'user', 'password' %></td>
+        <td><a onclick='addUser();'>Add User</a></td>
+    </tr>
+</table>
+
+<table id='batchAccountsTable'>
+    <tr>
+        <td>Name</td>
+        <td>Parent Name</td>
+        <td>Authorized User</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><%= text_field 'account', 'name' %></td>
+        <td><%= text_field 'account', 'parent' %></td>
+        <td><%= text_field 'account', 'users' %></td>
+        <td><a onclick='addAccount();'>Add Account</a></td>
+    </tr>
+</table>
+<form id='batchUsersForm' action='admin/batchUsers' method='post'>
+<%= submit_tag 'Execute' %>
+</form>
+
+<script type='text/javascript'>
+    var userIndex = 0;
+    var accountIndex = 0;
+    
+    function addUser(){
+        name = document.getElementById('user_name').value;
+        username = document.getElementById('user_username').value;
+        email = document.getElementById('user_email').value;
+        password = document.getElementById('user_password').value;
+        
+        table = document.getElementById('batchUsersTable');
+        form = document.getElementById('batchUsersForm');
+        
+        row = document.createElement('tr');
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'user[' + userIndex + '][name]';
+        input.value = col.innerHTML = name;
+        row.appendChild(col);
+        form.appendChild(input);
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'user[' + userIndex + '][login]';
+        input.value = col.innerHTML = username;
+        row.appendChild(col);
+        form.appendChild(input);
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'user[' + userIndex + '][email]';
+        input.value = col.innerHTML = email;
+        row.appendChild(col);
+        form.appendChild(input);
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'user[' + userIndex + '][password]';
+        input.value = col.innerHTML = password;
+        row.appendChild(col);
+        form.appendChild(input);  
+        
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'user[' + userIndex + '][password_confirmation]';
+        input.value = password;
+        form.appendChild(input);
+        
+        table.appendChild(row);
+        userIndex = userIndex + 1; 
+    }
+    
+    function addAccount(){
+        name = document.getElementById('account_name').value;
+        parent = document.getElementById('account_parent').value;
+        users = document.getElementById('account_users').value;
+        
+        table = document.getElementById('batchAccountsTable');
+        form = document.getElementById('batchUsersForm');
+        
+        row = document.createElement('tr');
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'account[' + accountIndex + '][name]';
+        input.value = col.innerHTML = name;
+        row.appendChild(col);
+        form.appendChild(input);
+        
+        col = document.createElement('td');
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'account[' + accountIndex + '][parent]';
+        input.value = col.innerHTML = parent;
+        row.appendChild(col);
+        form.appendChild(input);
+        
+        col = document.createElement('td');
+        if(users != ''){
+            input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'account[' + accountIndex + '][users][0]';
+            input.value = col.innerHTML = users;
+            form.appendChild(input);
+        }
+        row.appendChild(col);
+        
+        table.appendChild(row); 
+        accountIndex = accountIndex + 1;
+    }
+</script>
